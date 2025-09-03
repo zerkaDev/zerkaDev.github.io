@@ -10,71 +10,80 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Helvetica', Arial, sans-serif;
+            font-weight: bold;
         }
 
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: #333;
-            padding: 20px;
+            background: linear-gradient(135deg, #1c60cb 0%, #2575fc 100%);
+            color: #fff;
             min-height: 100vh;
+            padding: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%231c60cb' fill-opacity='0.3' d='M0,224L48,213.3C96,203,192,181,288,160C384,139,480,117,576,122.7C672,128,768,160,864,170.7C960,181,1056,171,1152,165.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            filter: blur(5px);
+            z-index: -1;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 100%;
             margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 0;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            min-height: 100vh;
+            color: #2c3e50;
         }
 
         header {
-            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(90deg, #2575fc 0%, #1c60cb 100%);
             color: white;
-            padding: 20px;
+            padding: 20px 15px;
             text-align: center;
         }
 
         h1 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
         }
 
         .subtitle {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             opacity: 0.9;
+            font-weight: normal;
         }
 
         .controls {
-            padding: 20px;
-            background: #f8f9fa;
-            border-bottom: 1px solid #e9ecef;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            align-items: center;
+            padding: 15px;
+            background: #f0f5ff;
+            border-bottom: 1px solid #dde4ef;
         }
 
         .search-box {
-            flex: 1;
-            min-width: 250px;
             position: relative;
         }
 
         .search-box input {
             width: 100%;
-            padding: 12px 15px 12px 45px;
-            border: 1px solid #ddd;
-            border-radius: 50px;
+            padding: 12px 15px 12px 40px;
+            border: 2px solid #2575fc;
+            border-radius: 25px;
             font-size: 1rem;
             outline: none;
-            transition: all 0.3s;
-        }
-
-        .search-box input:focus {
-            border-color: #6a11cb;
-            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+            background: white;
         }
 
         .search-box i {
@@ -82,85 +91,67 @@
             left: 15px;
             top: 50%;
             transform: translateY(-50%);
-            color: #6c757d;
-        }
-
-        .filter-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .filter-btn {
-            padding: 10px 20px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-
-        .filter-btn:hover {
-            background: #f1f3f5;
-        }
-
-        .filter-btn.active {
-            background: #6a11cb;
-            color: white;
-            border-color: #6a11cb;
+            color: #2575fc;
         }
 
         .content {
             display: flex;
-            min-height: 600px;
+            flex-direction: column;
+            max-height: calc(100vh - 180px);
         }
 
-        .colors-sidebar {
-            width: 300px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-right: 1px solid #e9ecef;
+        .colors-container {
+            padding: 15px;
+            background: #f8faff;
+            border-bottom: 1px solid #e6edfa;
+            max-height: 30vh;
             overflow-y: auto;
-            max-height: 600px;
+        }
+
+        .colors-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #2575fc;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .colors-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 12px;
         }
 
         .color-item {
             cursor: pointer;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
         .color-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
         }
 
         .color-item.selected {
-            box-shadow: 0 0 0 3px #6a11cb, 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 0 3px #2575fc, 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .color-preview {
-            height: 80px;
+            height: 70px;
         }
 
         .color-info {
-            padding: 10px;
+            padding: 10px 5px;
             background: white;
             text-align: center;
         }
 
         .color-name {
-            font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin-bottom: 3px;
             white-space: nowrap;
             overflow: hidden;
@@ -169,85 +160,87 @@
 
         .color-hex {
             color: #6c757d;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
+            font-weight: normal;
         }
 
         .main-content {
-            flex: 1;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
+            max-height: 70vh;
+            overflow-y: auto;
         }
 
         .combinations-section {
             background: white;
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
             margin-bottom: 20px;
         }
 
         .section-title {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 15px;
-            color: #6a11cb;
+            color: #2575fc;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .combinations-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 12px;
         }
 
         .combination-btn {
-            padding: 15px;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 15px 10px;
+            background: linear-gradient(135deg, #2575fc 0%, #1c60cb 100%);
             color: white;
             border: none;
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 600;
             text-align: center;
         }
 
         .combination-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(38, 117, 252, 0.4);
+            box-shadow: 0 5px 12px rgba(37, 117, 252, 0.3);
         }
 
         .combination-page {
             background: white;
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
         }
 
         .back-btn {
-            padding: 10px 20px;
-            background: #6c757d;
+            padding: 10px 15px;
+            background: #2575fc;
             color: white;
             border: none;
-            border-radius: 50px;
+            border-radius: 25px;
             cursor: pointer;
             margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 8px;
             transition: all 0.3s;
+            font-weight: bold;
         }
 
         .back-btn:hover {
-            background: #5a6268;
+            background: #1c60cb;
         }
 
         .combination-colors {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 15px;
             margin-top: 20px;
         }
 
@@ -257,40 +250,55 @@
 
         .empty-state {
             text-align: center;
-            padding: 40px;
+            padding: 30px 20px;
             color: #6c757d;
         }
 
         .empty-state i {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 15px;
             color: #dee2e6;
         }
 
-        @media (max-width: 992px) {
-            .content {
-                flex-direction: column;
+        .empty-state p {
+            font-weight: normal;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 800px;
+                margin: 20px auto;
+                border-radius: 15px;
+                min-height: auto;
             }
             
-            .colors-sidebar {
-                width: 100%;
-                max-height: 300px;
+            .content {
+                flex-direction: row;
+                min-height: 500px;
+                max-height: none;
+            }
+            
+            .colors-container {
+                width: 300px;
+                border-right: 1px solid #e6edfa;
+                border-bottom: none;
+                max-height: none;
+            }
+            
+            .main-content {
+                flex: 1;
+                max-height: none;
             }
         }
 
-        @media (max-width: 576px) {
-            .controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .search-box {
-                min-width: 100%;
-            }
-            
-            .filter-buttons {
-                justify-content: center;
-            }
+        /* Анимации для плавного появления */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease forwards;
         }
     </style>
 </head>
@@ -298,7 +306,7 @@
     <div class="container">
         <header>
             <h1>Цветовые комбинации</h1>
-            <p class="subtitle">Выберите цвет, чтобы увидеть доступные комбинации</p>
+            <p class="subtitle">Выберите цвет для просмотра комбинаций</p>
         </header>
 
         <div class="controls">
@@ -306,16 +314,14 @@
                 <i class="fas fa-search"></i>
                 <input type="text" id="search-input" placeholder="Поиск по названию цвета...">
             </div>
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">Все цвета</button>
-                <button class="filter-btn" data-filter="pink">Розовые</button>
-                <button class="filter-btn" data-filter="blue">Синие</button>
-                <button class="filter-btn" data-filter="green">Зеленые</button>
-            </div>
         </div>
 
         <div class="content">
-            <div class="colors-sidebar">
+            <div class="colors-container">
+                <h2 class="colors-title">
+                    <i class="fas fa-palette"></i>
+                    Доступные цвета
+                </h2>
                 <div class="colors-grid" id="colors-grid">
                     <!-- Colors will be rendered here -->
                 </div>
@@ -325,7 +331,7 @@
                 <div class="combinations-section hidden" id="combinations-section">
                     <h2 class="section-title">
                         <i class="fas fa-palette"></i>
-                        Комбинации для цвета: <span id="selected-color-name"></span>
+                        Комбинации для: <span id="selected-color-name"></span>
                     </h2>
                     <div class="combinations-list" id="combinations-list">
                         <!-- Combination buttons will be rendered here -->
@@ -334,7 +340,7 @@
 
                 <div id="combination-page" class="combination-page hidden">
                     <button class="back-btn" onclick="showMainPage()">
-                        <i class="fas fa-arrow-left"></i> Назад к списку
+                        <i class="fas fa-arrow-left"></i> Назад
                     </button>
                     <h2 class="section-title">
                         <i class="fas fa-star"></i>
@@ -346,16 +352,16 @@
                 </div>
 
                 <div id="empty-state" class="empty-state">
-                    <i class="fas fa-eye-dropper"></i>
-                    <h3>Выберите цвет для просмотра комбинаций</h3>
-                    <p>Цвета с доступными комбинациями отображаются в левой панели</p>
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>Выберите цвет</h3>
+                    <p>Цвета с доступными комбинациями отображаются выше</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Данные о цветах (расширенные для демонстрации)
+        // Данные о цветах (без категорий)
         const colorsData = [
   {
     "name": "Hermosa Pink",
@@ -3138,10 +3144,9 @@
     ],
     "hex": "#111314"
   }
-]	;
+];
 
         let selectedColor = null;
-        let currentFilter = 'all';
         let currentSearch = '';
 
         // Инициализация при загрузке страницы
@@ -3157,29 +3162,14 @@
                 currentSearch = e.target.value.toLowerCase();
                 renderColors();
             });
-
-            // Фильтры
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    currentFilter = btn.dataset.filter;
-                    renderColors();
-                });
-            });
         }
 
-        // Отображение всех цветов с учетом фильтров
+        // Отображение всех цветов с учетом поиска
         function renderColors() {
             const colorsGrid = document.getElementById('colors-grid');
             colorsGrid.innerHTML = '';
 
             let filteredColors = colorsData;
-            
-            // Применяем фильтр по категории
-            if (currentFilter !== 'all') {
-                filteredColors = filteredColors.filter(color => color.category === currentFilter);
-            }
             
             // Применяем поиск
             if (currentSearch) {
@@ -3238,11 +3228,11 @@
             if (color.combinations && color.combinations.length > 0) {
                 color.combinations.forEach(combination => {
                     const btn = document.createElement('div');
-                    btn.className = 'combination-btn';
+                    btn.className = 'combination-btn fade-in';
                     btn.innerHTML = `
                         <div>Комбинация</div>
-                        <div style="font-size: 1.5rem; margin: 5px 0;">#${combination}</div>
-                        <div style="font-size: 0.8rem; opacity: 0.9;">${getCombinationColorCount(combination)} цветов</div>
+                        <div style="font-size: 1.4rem; margin: 5px 0;">#${combination}</div>
+                        <div style="font-size: 0.75rem; opacity: 0.9; font-weight: normal;">${getCombinationColorCount(combination)} цветов</div>
                     `;
                     btn.onclick = () => showCombinationPage(combination);
                     combinationsList.appendChild(btn);
@@ -3258,6 +3248,13 @@
 
             combinationsSection.classList.remove('hidden');
             document.getElementById('combination-page').classList.add('hidden');
+            
+            // Прокрутка к комбинациям (только на мобильных)
+            if (window.innerWidth < 768) {
+                setTimeout(() => {
+                    combinationsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
         }
 
         // Получить количество цветов в комбинации
@@ -3285,7 +3282,7 @@
             if (colorsInCombination.length > 0) {
                 colorsInCombination.forEach(color => {
                     const colorItem = document.createElement('div');
-                    colorItem.className = 'color-item';
+                    colorItem.className = 'color-item fade-in';
 
                     colorItem.innerHTML = `
                         <div class="color-preview" style="background-color: ${color.hex}"></div>
@@ -3307,12 +3304,26 @@
             }
 
             combinationPage.classList.remove('hidden');
+            
+            // Прокрутка к верху страницы комбинации (только на мобильных)
+            if (window.innerWidth < 768) {
+                setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 100);
+            }
         }
 
         // Вернуться на главную страницу
         function showMainPage() {
             document.getElementById('combination-page').classList.add('hidden');
             document.getElementById('combinations-section').classList.remove('hidden');
+            
+            // Прокрутка к комбинациям (только на мобильных)
+            if (window.innerWidth < 768) {
+                setTimeout(() => {
+                    document.getElementById('combinations-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
         }
 
         // Запуск при загрузке страницы
